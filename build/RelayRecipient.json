@@ -1,0 +1,192 @@
+{
+  "abi": [
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "get_hub_addr",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "relay",
+          "type": "address"
+        },
+        {
+          "name": "from",
+          "type": "address"
+        },
+        {
+          "name": "encoded_function",
+          "type": "bytes"
+        },
+        {
+          "name": "success",
+          "type": "bool"
+        },
+        {
+          "name": "used_gas",
+          "type": "uint256"
+        },
+        {
+          "name": "transaction_fee",
+          "type": "uint256"
+        }
+      ],
+      "name": "post_relayed_call",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "relay",
+          "type": "address"
+        },
+        {
+          "name": "from",
+          "type": "address"
+        },
+        {
+          "name": "encoded_function",
+          "type": "bytes"
+        },
+        {
+          "name": "gas_price",
+          "type": "uint256"
+        },
+        {
+          "name": "transaction_fee",
+          "type": "uint256"
+        }
+      ],
+      "name": "accept_relayed_call",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint32"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "get_message_data",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bytes"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "get_sender",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "orig_sender",
+          "type": "address"
+        },
+        {
+          "name": "msg_data",
+          "type": "bytes"
+        }
+      ],
+      "name": "get_sender_from_data",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "get_recipient_balance",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "devdoc": {
+    "methods": {}
+  },
+  "evm": {
+    "assembly": "",
+    "bytecode": {
+      "linkReferences": {},
+      "object": "",
+      "opcodes": "",
+      "sourceMap": ""
+    },
+    "deployedBytecode": {
+      "linkReferences": {},
+      "object": "",
+      "opcodes": "",
+      "sourceMap": ""
+    },
+    "gasEstimates": null,
+    "legacyAssembly": null,
+    "methodIdentifiers": {
+      "accept_relayed_call(address,address,bytes,uint256,uint256)": "5dea186c",
+      "get_hub_addr()": "04badade",
+      "get_message_data()": "91719568",
+      "get_recipient_balance()": "ed6cd5d3",
+      "get_sender()": "a8d509ff",
+      "get_sender_from_data(address,bytes)": "c304e7a4",
+      "post_relayed_call(address,address,bytes,bool,uint256,uint256)": "516dea30"
+    }
+  },
+  "metadata": "",
+  "userdoc": {
+    "methods": {
+      "get_recipient_balance()": {
+        "notice": "return the balance of this contract. Note that this method will revert on configuration error (invalid relay address)"
+      },
+      "post_relayed_call(address,address,bytes,bool,uint256,uint256)": {
+        "notice": "This method is called after the relayed call. It may be used to record the transaction (e.g. charge the caller by some contract logic) for this call. the method is given all parameters of accept_relayed_call, and also the success/failure status and actual used gas. - success - true if the relayed call succeeded, false if it reverted - used_gas - gas used up to this point. Note that gas calculation (for the purpose of compensation  to the relay) is done after this method returns."
+      }
+    }
+  }
+}
