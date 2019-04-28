@@ -20,13 +20,14 @@ const loadNetwork = async () => {
     const { networks, abi } = require("./build/contracts/RelayHub.json");
     const networkId = await provider.getNetwork();
     const accounts = await provider.listAccounts();
-    const balance = await provider.getBalance(accounts[0]);
-    console.log(balance.toString());
-
-
+    let balance = await provider.getBalance(accounts[0]);
+    balance = balance.toString();
     const chain = networkId.chainId
     console.log(`Ethereum Chain ID: ${chain.toString()}`);
+    console.log(`Balance Account[0]: ${balance}`);
     let contract = new ethers.Contract(networks[chain].address, abi, provider);
+    let msg = await contract.hello();
+    console.log(msg);
 
 }
 
