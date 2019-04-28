@@ -4786,7 +4786,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.6",
-  "updatedAt": "2019-04-28T16:46:40.954Z",
+  "updatedAt": "2019-04-28T22:40:20.941Z",
   "devdoc": {
     "methods": {
       "extractUint(bytes,uint256)": {
