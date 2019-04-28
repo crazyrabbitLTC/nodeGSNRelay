@@ -6,7 +6,7 @@ const contractArtifact = require("./build/contracts/RelayHub.json");
 
 const privateKey =
   "0x38e8085d0dfcd53f06b763042dde15a9f07b6b1d5fb2e7f384253050b83743a2";
-  const publicKey = "0xda9d0e8b3c543a5f83025f1af527bd85703e4cca";
+const publicKey = "0xda9d0e8b3c543a5f83025f1af527bd85703e4cca";
 //1: Deploy Contracts:
 //start Ganache
 //Relay Hub
@@ -92,67 +92,50 @@ class RelayHubClass {
 
     let depositWei = utils.parseEther(deposit);
     let stakeWei = utils.parseEther(stake);
-    let fee = utils.parseEther('1');
-    //console.log("Fee is: ", fee);
+    let fee = utils.parseEther("1");
 
-    // console.log("depositWei: ", depositWei);
-    // //First deposit
-    // try {
-    //   const tx = await instanceWithSigner.deposit({ value: depositWei });
-    //   console.log(tx);
-    //   console.log("Wait for deposit to mine");
-    //   await tx.wait();
-    //   console.log("Deposit mined");
-    // } catch (error) {
-    //   console.log(error);
-    // }
+    instanceWithSigner.on("Staked", (relay, value, event) => {
+      console.log("On Staked");
+      console.log(relay);
+      console.log(utils.toString(value));
 
-    // //Second stake
-    // try {
-    //   const tx = await instanceWithSigner.stake(publicKey, { value: stakeWei });
-    //   console.log(tx);
-    //   console.log("Wait for deposit to mine");
-    //   await tx.wait();
-    //   console.log("Deposit mined");
-    // } catch (error) {
-    //   console.log(error);
-    // }
+      //console.log(event);
+    });
 
-    instanceWithSigner.on("Staked", (relay, value, event)=> {
-        console.log("On Staked");
-        console.log(relay);
-        console.log(value.toString());
-  
-        //console.log(event);
-    })
-
-    instanceWithSigner.on("RelayAdded", (sender, owner, fee, stake, unstakeDelay, url)=>{
+    instanceWithSigner.on(
+      "RelayAdded",
+      (sender, owner, fee, stake, unstakeDelay, url) => {
         console.log("On Registered");
-        console.log(sender, owner, fee, stake, unstakeDelay, url);
-    })
+        fee = utils.formatEther(fee, { commify: true });
+        stake = utils.formatEther(stake, { commify: true });
+        unstakeDelay = utils.formatEther(unstakeDelay);
+        console.log(
+          `Relay Added: Sender: ${sender} Owner: ${owner} Fee: ${fee} Stake: ${stake} Delay: ${unstakeDelay} URL: ${url} `
+        );
+      }
+    );
     //first Stake
     try {
-        const tx = await instanceWithSigner.stake(publicKey, 10, { value: stakeWei });
-        //console.log(tx);
-        
-        await tx.wait();
-
-        //console.log("Stake Mined" , tx);
+      const tx = await instanceWithSigner.stake(publicKey, 10, {
+        value: stakeWei
+      });
+      await tx.wait();
     } catch (error) {
-        console.error
+      console.error;
     }
 
     try {
-        console.log("register");
-        const tx = await instanceWithSigner.register_relay(fee, "http://localhost:3000", "0x0000000000000000000000000000000000000000");
-        console.log(tx);
-        await tx.wait();
-        console.log("Register Mined", tx);
+      console.log("register");
+      const tx = await instanceWithSigner.register_relay(
+        fee,
+        "http://localhost:3000",
+        "0x0000000000000000000000000000000000000000"
+      );
+
+      await tx.wait();
     } catch (error) {
-        console.log(error)
+      console.log(error);
     }
-    //let balance = await instance.balanceOf(this.state.accounts[0]);
-    //console.log(`Balance of ${balance.toString()}`);
   }
 }
 
