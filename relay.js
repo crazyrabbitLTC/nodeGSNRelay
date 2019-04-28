@@ -16,22 +16,19 @@ const provider = new ethers.providers.JsonRpcProvider();
 //init userContract for relay
 
 
-
-
+//turn into class later
 const loadNetwork = async () => {
     const { networks, abi } = require("./build/contracts/RelayHub.json");
     const networkId = await provider.getNetwork();
-    
+    const accounts = await provider.listAccounts();
+    const balance = await provider.getBalance(accounts[0]);
+    console.log(balance);
 
-    console.log(networkId.chainId);
-    
-    // console.log(typeof(networkId.chainId));
+
     const chain = networkId.chainId
-    console.log(chain.toString());
-    console.dir(networks[chain].address);
+    console.log(`Ethereum Chain ID: ${chain.toString()}`);
     let contract = new ethers.Contract(networks[chain].address, abi, provider);
-    console.log(contract);
-    console.log("contract made");
+
 }
 
 
