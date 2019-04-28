@@ -10,6 +10,9 @@ const privateKey =
   "0x4f3edf983ac636a65a842ce7c78d9aa706d3b113bce9c46f30d7d21715b23b1d";
 const publicKey = "0x90f8bf6a479f320ead074411a4b0e7944ea8c9c1";
 
+const stake = "1";
+const deposit = "1";
+
 let RelayHub;
 
 app.use((req, res, next) => {
@@ -18,15 +21,11 @@ app.use((req, res, next) => {
 });
 
 app.get("/", (req, res) => {
-  res.send("An alligator approaches!");
+  res.send("Working");
 });
 
 app.get("/accounts", (req, res) => {
   provider.listAccounts().then(result => res.send(result));
-});
-
-app.get("/networks", async (req, res) => {
-  res.send(networks);
 });
 
 app.get("/ready", async (req, res) => {
@@ -41,6 +40,6 @@ app.listen(3000, async () => {
     publicKey
   );
   await RelayHub.init();
-  RelayHub.registerRelay("1", "1");
+  RelayHub.registerRelay(stake, deposit);
   console.log("app listening on port 3000!");
 });
