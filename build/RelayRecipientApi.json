@@ -29,11 +29,7 @@
       "type": "function"
     }
   ],
-  "devdoc": {
-    "methods": {}
-  },
   "evm": {
-    "assembly": "",
     "bytecode": {
       "linkReferences": {},
       "object": "",
@@ -46,22 +42,6 @@
       "opcodes": "",
       "sourceMap": ""
     },
-    "gasEstimates": null,
-    "legacyAssembly": null,
-    "methodIdentifiers": {
-      "get_hub_addr()": "04badade",
-      "get_recipient_balance()": "ed6cd5d3"
-    }
-  },
-  "metadata": "",
-  "userdoc": {
-    "methods": {
-      "get_hub_addr()": {
-        "notice": "return the relayHub of this contract."
-      },
-      "get_recipient_balance()": {
-        "notice": "return the contract's balance on the RelayHub. can be used to determine if the contract can pay for incoming calls, before making any."
-      }
-    }
+    "gasEstimates": null
   }
 }

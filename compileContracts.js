@@ -37,14 +37,32 @@ function createConfiguration() {
     },
     settings: {
       outputSelection: {
-        // return everything
         "*": {
-          "*": ["*"]
-        }
-      }
+          "": [
+            "legacyAST",
+            "ast"
+          ],
+          "*": [
+            "abi",
+            "evm.bytecode.object",
+            "evm.bytecode.sourceMap",
+            "evm.deployedBytecode.object",
+            "evm.deployedBytecode.sourceMap",
+            "evm.gasEstimates"
+          ]
+        },
+    }
     }
   };
 }
+
+//Previous output Selection
+// outputSelection: {
+//   // return everything
+//   "*": {
+//     "*": ["*"]
+//   }
+// }
 
 /**
  * Searches for dependencies in the Solidity files (import statements). All import Solidity files
