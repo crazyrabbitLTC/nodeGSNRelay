@@ -6,6 +6,8 @@ import "./RLPReader.sol";
 
 contract RelayHub is RelayHubApi {
 
+    string public hello = "hello";
+
     // Anyone can call certain functions in this singleton and trigger relay processes.
 
     uint constant timeout = 5 days; // XXX TBD

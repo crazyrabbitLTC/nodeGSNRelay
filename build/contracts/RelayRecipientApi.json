@@ -41,14 +41,14 @@
     "absolutePath": "/Users/dennisonzeppelin/Documents/nodeGSNRelay/contracts/RelayRecipientApi.sol",
     "exportedSymbols": {
       "RelayRecipientApi": [
-        2387
+        2390
       ]
     },
-    "id": 2388,
+    "id": 2391,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 2376,
+        "id": 2379,
         "literals": [
           "solidity",
           ">=",
@@ -67,9 +67,9 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 2387,
+        "id": 2390,
         "linearizedBaseContracts": [
-          2387
+          2390
         ],
         "name": "RelayRecipientApi",
         "nodeType": "ContractDefinition",
@@ -77,28 +77,28 @@
           {
             "body": null,
             "documentation": "return the relayHub of this contract.",
-            "id": 2381,
+            "id": 2384,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "get_hub_addr",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2377,
+              "id": 2380,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "149:2:6"
             },
             "returnParameters": {
-              "id": 2380,
+              "id": 2383,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2379,
+                  "id": 2382,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2381,
+                  "scope": 2384,
                   "src": "173:7:6",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -107,7 +107,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2378,
+                    "id": 2381,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "173:7:6",
@@ -123,7 +123,7 @@
               ],
               "src": "172:9:6"
             },
-            "scope": 2387,
+            "scope": 2390,
             "src": "128:54:6",
             "stateMutability": "view",
             "superFunction": null,
@@ -132,28 +132,28 @@
           {
             "body": null,
             "documentation": "return the contract's balance on the RelayHub.\ncan be used to determine if the contract can pay for incoming calls,\nbefore making any.",
-            "id": 2386,
+            "id": 2389,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "get_recipient_balance",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2382,
+              "id": 2385,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "390:2:6"
             },
             "returnParameters": {
-              "id": 2385,
+              "id": 2388,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2384,
+                  "id": 2387,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2386,
+                  "scope": 2389,
                   "src": "414:4:6",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -162,7 +162,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2383,
+                    "id": 2386,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "414:4:6",
@@ -177,14 +177,14 @@
               ],
               "src": "413:6:6"
             },
-            "scope": 2387,
+            "scope": 2390,
             "src": "360:60:6",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 2388,
+        "scope": 2391,
         "src": "33:389:6"
       }
     ],
@@ -194,14 +194,14 @@
     "absolutePath": "/Users/dennisonzeppelin/Documents/nodeGSNRelay/contracts/RelayRecipientApi.sol",
     "exportedSymbols": {
       "RelayRecipientApi": [
-        2387
+        2390
       ]
     },
-    "id": 2388,
+    "id": 2391,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 2376,
+        "id": 2379,
         "literals": [
           "solidity",
           ">=",
@@ -220,9 +220,9 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 2387,
+        "id": 2390,
         "linearizedBaseContracts": [
-          2387
+          2390
         ],
         "name": "RelayRecipientApi",
         "nodeType": "ContractDefinition",
@@ -230,28 +230,28 @@
           {
             "body": null,
             "documentation": "return the relayHub of this contract.",
-            "id": 2381,
+            "id": 2384,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "get_hub_addr",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2377,
+              "id": 2380,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "149:2:6"
             },
             "returnParameters": {
-              "id": 2380,
+              "id": 2383,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2379,
+                  "id": 2382,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2381,
+                  "scope": 2384,
                   "src": "173:7:6",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -260,7 +260,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2378,
+                    "id": 2381,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "173:7:6",
@@ -276,7 +276,7 @@
               ],
               "src": "172:9:6"
             },
-            "scope": 2387,
+            "scope": 2390,
             "src": "128:54:6",
             "stateMutability": "view",
             "superFunction": null,
@@ -285,28 +285,28 @@
           {
             "body": null,
             "documentation": "return the contract's balance on the RelayHub.\ncan be used to determine if the contract can pay for incoming calls,\nbefore making any.",
-            "id": 2386,
+            "id": 2389,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "get_recipient_balance",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2382,
+              "id": 2385,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "390:2:6"
             },
             "returnParameters": {
-              "id": 2385,
+              "id": 2388,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2384,
+                  "id": 2387,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2386,
+                  "scope": 2389,
                   "src": "414:4:6",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -315,7 +315,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2383,
+                    "id": 2386,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "414:4:6",
@@ -330,14 +330,14 @@
               ],
               "src": "413:6:6"
             },
-            "scope": 2387,
+            "scope": 2390,
             "src": "360:60:6",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 2388,
+        "scope": 2391,
         "src": "33:389:6"
       }
     ],
@@ -349,7 +349,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.6",
-  "updatedAt": "2019-04-28T16:27:43.055Z",
+  "updatedAt": "2019-04-28T16:46:40.973Z",
   "devdoc": {
     "methods": {}
   },

@@ -279,7 +279,7 @@
                           "name": "keccak256",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 2616,
+                          "referencedDeclaration": 2619,
                           "src": "231:9:2",
                           "typeDescriptions": {
                             "typeIdentifier": "t_function_keccak256_pure$_t_bytes_memory_ptr_$returns$_t_bytes32_$",
@@ -1935,10 +1935,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        2625,
-                        2626
+                        2628,
+                        2629
                       ],
-                      "referencedDeclaration": 2626,
+                      "referencedDeclaration": 2629,
                       "src": "2260:7:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
@@ -2586,7 +2586,7 @@
                           "name": "keccak256",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 2616,
+                          "referencedDeclaration": 2619,
                           "src": "231:9:2",
                           "typeDescriptions": {
                             "typeIdentifier": "t_function_keccak256_pure$_t_bytes_memory_ptr_$returns$_t_bytes32_$",
@@ -4242,10 +4242,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        2625,
-                        2626
+                        2628,
+                        2629
                       ],
-                      "referencedDeclaration": 2626,
+                      "referencedDeclaration": 2629,
                       "src": "2260:7:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
@@ -4786,7 +4786,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.6",
-  "updatedAt": "2019-04-28T16:27:43.037Z",
+  "updatedAt": "2019-04-28T16:46:40.954Z",
   "devdoc": {
     "methods": {
       "extractUint(bytes,uint256)": {

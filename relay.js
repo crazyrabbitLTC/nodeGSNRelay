@@ -1,8 +1,9 @@
 const express = require("express");
 const app = express();
 const ethers = require("ethers");
-const ganache = require("ganache-cli");
-const provider = new ethers.providers.Web3Provider(ganache.provider());
+// const ganache = require("ganache-cli");
+// const provider = new ethers.providers.Web3Provider(ganache.provider());
+const provider = new ethers.providers.JsonRpcProvider();
 
 //1: Deploy Contracts:
 //start Ganache
@@ -20,13 +21,16 @@ const provider = new ethers.providers.Web3Provider(ganache.provider());
 const loadNetwork = async () => {
     const { networks, abi } = require("./build/contracts/RelayHub.json");
     const networkId = await provider.getNetwork();
-    console.log(networkId);
-    // console.log(typeof(networkId.chainId));
-    // const chain = networkId.chainId
-    // console.log(chain.toString());
-    // console.dir(networks[chain].address);
-    let contract = new ethers.Contract('0x5031d1e0C7162d2F763936982895c8f178e2e6bD', abi, provider);
+    
 
+    console.log(networkId.chainId);
+    
+    // console.log(typeof(networkId.chainId));
+    const chain = networkId.chainId
+    console.log(chain.toString());
+    console.dir(networks[chain].address);
+    let contract = new ethers.Contract(networks[chain].address, abi, provider);
+    console.log(contract);
     console.log("contract made");
 }
 

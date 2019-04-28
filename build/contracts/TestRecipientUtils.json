@@ -202,14 +202,14 @@
     "absolutePath": "/Users/dennisonzeppelin/Documents/nodeGSNRelay/contracts/TestRecipientUtils.sol",
     "exportedSymbols": {
       "TestRecipientUtils": [
-        2607
+        2610
       ]
     },
-    "id": 2608,
+    "id": 2611,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 2586,
+        "id": 2589,
         "literals": [
           "solidity",
           ">=",
@@ -225,9 +225,9 @@
       {
         "absolutePath": "/Users/dennisonzeppelin/Documents/nodeGSNRelay/contracts/RecipientUtils.sol",
         "file": "./RecipientUtils.sol",
-        "id": 2587,
+        "id": 2590,
         "nodeType": "ImportDirective",
-        "scope": 2608,
+        "scope": 2611,
         "sourceUnit": 846,
         "src": "33:30:8",
         "symbolAliases": [],
@@ -239,7 +239,7 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 2588,
+              "id": 2591,
               "name": "RecipientUtils",
               "nodeType": "UserDefinedTypeName",
               "referencedDeclaration": 845,
@@ -249,7 +249,7 @@
                 "typeString": "contract RecipientUtils"
               }
             },
-            "id": 2589,
+            "id": 2592,
             "nodeType": "InheritanceSpecifier",
             "src": "96:14:8"
           }
@@ -260,9 +260,9 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 2607,
+        "id": 2610,
         "linearizedBaseContracts": [
-          2607,
+          2610,
           845
         ],
         "name": "TestRecipientUtils",
@@ -271,11 +271,11 @@
           {
             "anonymous": false,
             "documentation": null,
-            "id": 2591,
+            "id": 2594,
             "name": "Unused",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 2590,
+              "id": 2593,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "130:2:8"
@@ -284,7 +284,7 @@
           },
           {
             "body": {
-              "id": 2605,
+              "id": 2608,
               "nodeType": "Block",
               "src": "207:58:8",
               "statements": [
@@ -294,18 +294,18 @@
                     "arguments": [],
                     "expression": {
                       "argumentTypes": [],
-                      "id": 2602,
+                      "id": 2605,
                       "name": "Unused",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 2591,
+                      "referencedDeclaration": 2594,
                       "src": "222:6:8",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_event_nonpayable$__$returns$__$",
                         "typeString": "function ()"
                       }
                     },
-                    "id": 2603,
+                    "id": 2606,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -319,29 +319,29 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 2604,
+                  "id": 2607,
                   "nodeType": "EmitStatement",
                   "src": "217:13:8"
                 }
               ]
             },
             "documentation": null,
-            "id": 2606,
+            "id": 2609,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "testFunc",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2600,
+              "id": 2603,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2593,
+                  "id": 2596,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2606,
+                  "scope": 2609,
                   "src": "156:4:8",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -350,7 +350,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2592,
+                    "id": 2595,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "156:4:8",
@@ -364,10 +364,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 2595,
+                  "id": 2598,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2606,
+                  "scope": 2609,
                   "src": "163:13:8",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -376,7 +376,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 2594,
+                    "id": 2597,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "163:6:8",
@@ -390,10 +390,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 2597,
+                  "id": 2600,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2606,
+                  "scope": 2609,
                   "src": "178:4:8",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -402,7 +402,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2596,
+                    "id": 2599,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "178:4:8",
@@ -416,10 +416,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 2599,
+                  "id": 2602,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2606,
+                  "scope": 2609,
                   "src": "185:12:8",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -428,7 +428,7 @@
                     "typeString": "bytes"
                   },
                   "typeName": {
-                    "id": 2598,
+                    "id": 2601,
                     "name": "bytes",
                     "nodeType": "ElementaryTypeName",
                     "src": "185:5:8",
@@ -444,19 +444,19 @@
               "src": "155:44:8"
             },
             "returnParameters": {
-              "id": 2601,
+              "id": 2604,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "207:0:8"
             },
-            "scope": 2607,
+            "scope": 2610,
             "src": "138:127:8",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 2608,
+        "scope": 2611,
         "src": "65:203:8"
       }
     ],
@@ -466,14 +466,14 @@
     "absolutePath": "/Users/dennisonzeppelin/Documents/nodeGSNRelay/contracts/TestRecipientUtils.sol",
     "exportedSymbols": {
       "TestRecipientUtils": [
-        2607
+        2610
       ]
     },
-    "id": 2608,
+    "id": 2611,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 2586,
+        "id": 2589,
         "literals": [
           "solidity",
           ">=",
@@ -489,9 +489,9 @@
       {
         "absolutePath": "/Users/dennisonzeppelin/Documents/nodeGSNRelay/contracts/RecipientUtils.sol",
         "file": "./RecipientUtils.sol",
-        "id": 2587,
+        "id": 2590,
         "nodeType": "ImportDirective",
-        "scope": 2608,
+        "scope": 2611,
         "sourceUnit": 846,
         "src": "33:30:8",
         "symbolAliases": [],
@@ -503,7 +503,7 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 2588,
+              "id": 2591,
               "name": "RecipientUtils",
               "nodeType": "UserDefinedTypeName",
               "referencedDeclaration": 845,
@@ -513,7 +513,7 @@
                 "typeString": "contract RecipientUtils"
               }
             },
-            "id": 2589,
+            "id": 2592,
             "nodeType": "InheritanceSpecifier",
             "src": "96:14:8"
           }
@@ -524,9 +524,9 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 2607,
+        "id": 2610,
         "linearizedBaseContracts": [
-          2607,
+          2610,
           845
         ],
         "name": "TestRecipientUtils",
@@ -535,11 +535,11 @@
           {
             "anonymous": false,
             "documentation": null,
-            "id": 2591,
+            "id": 2594,
             "name": "Unused",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 2590,
+              "id": 2593,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "130:2:8"
@@ -548,7 +548,7 @@
           },
           {
             "body": {
-              "id": 2605,
+              "id": 2608,
               "nodeType": "Block",
               "src": "207:58:8",
               "statements": [
@@ -558,18 +558,18 @@
                     "arguments": [],
                     "expression": {
                       "argumentTypes": [],
-                      "id": 2602,
+                      "id": 2605,
                       "name": "Unused",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 2591,
+                      "referencedDeclaration": 2594,
                       "src": "222:6:8",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_event_nonpayable$__$returns$__$",
                         "typeString": "function ()"
                       }
                     },
-                    "id": 2603,
+                    "id": 2606,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -583,29 +583,29 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 2604,
+                  "id": 2607,
                   "nodeType": "EmitStatement",
                   "src": "217:13:8"
                 }
               ]
             },
             "documentation": null,
-            "id": 2606,
+            "id": 2609,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "testFunc",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2600,
+              "id": 2603,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2593,
+                  "id": 2596,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2606,
+                  "scope": 2609,
                   "src": "156:4:8",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -614,7 +614,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2592,
+                    "id": 2595,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "156:4:8",
@@ -628,10 +628,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 2595,
+                  "id": 2598,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2606,
+                  "scope": 2609,
                   "src": "163:13:8",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -640,7 +640,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 2594,
+                    "id": 2597,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "163:6:8",
@@ -654,10 +654,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 2597,
+                  "id": 2600,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2606,
+                  "scope": 2609,
                   "src": "178:4:8",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -666,7 +666,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2596,
+                    "id": 2599,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "178:4:8",
@@ -680,10 +680,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 2599,
+                  "id": 2602,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2606,
+                  "scope": 2609,
                   "src": "185:12:8",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -692,7 +692,7 @@
                     "typeString": "bytes"
                   },
                   "typeName": {
-                    "id": 2598,
+                    "id": 2601,
                     "name": "bytes",
                     "nodeType": "ElementaryTypeName",
                     "src": "185:5:8",
@@ -708,19 +708,19 @@
               "src": "155:44:8"
             },
             "returnParameters": {
-              "id": 2601,
+              "id": 2604,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "207:0:8"
             },
-            "scope": 2607,
+            "scope": 2610,
             "src": "138:127:8",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 2608,
+        "scope": 2611,
         "src": "65:203:8"
       }
     ],
@@ -732,7 +732,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.6",
-  "updatedAt": "2019-04-28T16:27:43.058Z",
+  "updatedAt": "2019-04-28T16:46:40.975Z",
   "devdoc": {
     "methods": {
       "extractUint(bytes,uint256)": {
