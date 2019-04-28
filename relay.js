@@ -6,6 +6,7 @@ const contractArtifact = require("./build/contracts/RelayHub.json");
 
 const privateKey =
   "0x38e8085d0dfcd53f06b763042dde15a9f07b6b1d5fb2e7f384253050b83743a2";
+  const publicKey = "0xda9d0e8b3c543a5f83025f1af527bd85703e4cca";
 //1: Deploy Contracts:
 //start Ganache
 //Relay Hub
@@ -85,27 +86,65 @@ class RelayHubClass {
   }
 
   async registerRelay(stake, deposit) {
-    const { instanceWithSigner, accounts} = this.state;
-    const {utils} = ethers;
-    // let balance = await provider.getBalance(accounts[0]);
-    // balance = balance.toString();
-    // balance = balance.toNumber();
+    const { instanceWithSigner, accounts } = this.state;
+    const { utils } = ethers;
+    const relayAddress = accounts[0];
 
- 
-    let wei = utils.parseEther(deposit);
-    console.log("Wei: ", wei);
-    //first deposit
+    let depositWei = utils.parseEther(deposit);
+    let stakeWei = utils.parseEther(stake);
+    let fee = utils.parseEther('1');
+    //console.log("Fee is: ", fee);
+
+    // console.log("depositWei: ", depositWei);
+    // //First deposit
+    // try {
+    //   const tx = await instanceWithSigner.deposit({ value: depositWei });
+    //   console.log(tx);
+    //   console.log("Wait for deposit to mine");
+    //   await tx.wait();
+    //   console.log("Deposit mined");
+    // } catch (error) {
+    //   console.log(error);
+    // }
+
+    // //Second stake
+    // try {
+    //   const tx = await instanceWithSigner.stake(publicKey, { value: stakeWei });
+    //   console.log(tx);
+    //   console.log("Wait for deposit to mine");
+    //   await tx.wait();
+    //   console.log("Deposit mined");
+    // } catch (error) {
+    //   console.log(error);
+    // }
+
+    instanceWithSigner.on("Staked", (relay, value, event)=> {
+        console.log(relay);
+        console.log(value.toString());
+  
+        //console.log(event);
+    })
+    //first Stake
     try {
-      const tx = await instanceWithSigner
-        .deposit({value: wei });
-        console.log(tx);
-        console.log("WAit for transaction to mine");
+        const tx = await instanceWithSigner.stake(publicKey, 10, { value: stakeWei });
+        //console.log(tx);
+        
         await tx.wait();
-        console.log("Transaction mined");
+
+        //console.log("Stake Mined" , tx);
     } catch (error) {
-        console.log(error)
+        console.error
     }
 
+    // try {
+    //     console.log("register");
+    //     const tx = await instanceWithSigner.register_relay(fee, "localhost:3000", "");
+    //     console.log(tx);
+    //     await tx.wait();
+    //     console.log("Register Mined", tx);
+    // } catch (error) {
+    //     console.log(error)
+    // }
     //let balance = await instance.balanceOf(this.state.accounts[0]);
     //console.log(`Balance of ${balance.toString()}`);
   }
@@ -140,6 +179,6 @@ app.get("/networks", async (req, res) => {
 app.listen(3000, async () => {
   const RelayHub = new RelayHubClass(provider, contractArtifact);
   await RelayHub.init();
-  RelayHub.registerRelay('1','1');
+  RelayHub.registerRelay("1", "1");
   console.log("app listening on port 3000!");
 });
