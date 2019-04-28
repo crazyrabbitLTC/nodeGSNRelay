@@ -28,8 +28,8 @@ const loadNetwork = async () => {
     let contract = new ethers.Contract(networks[chain].address, abi, provider);
     let msg = await contract.hello();
     console.log(msg);
-
 }
+
 
 
 
@@ -51,10 +51,6 @@ app.get("/", (req, res) => {
 
 app.get("/accounts", (req, res) => {
   provider.listAccounts().then(result => res.send(result));
-});
-
-app.get("/abi", (req, res) => {
-  res.send(abi);
 });
 
 app.get("/networks", (req, res) => {
