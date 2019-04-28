@@ -1,9 +1,8 @@
 const express = require("express");
 const app = express();
 const ethers = require("ethers");
-// const ganache = require("ganache-cli");
-// const provider = new ethers.providers.Web3Provider(ganache.provider());
 const provider = new ethers.providers.JsonRpcProvider();
+
 
 //1: Deploy Contracts:
 //start Ganache
@@ -22,7 +21,7 @@ const loadNetwork = async () => {
     const networkId = await provider.getNetwork();
     const accounts = await provider.listAccounts();
     const balance = await provider.getBalance(accounts[0]);
-    console.log(balance);
+    console.log(balance.toString());
 
 
     const chain = networkId.chainId
