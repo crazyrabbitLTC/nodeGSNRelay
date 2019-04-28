@@ -119,10 +119,16 @@ class RelayHubClass {
     // }
 
     instanceWithSigner.on("Staked", (relay, value, event)=> {
+        console.log("On Staked");
         console.log(relay);
         console.log(value.toString());
   
         //console.log(event);
+    })
+
+    instanceWithSigner.on("RelayAdded", (sender, owner, fee, stake, unstakeDelay, url)=>{
+        console.log("On Registered");
+        console.log(sender, owner, fee, stake, unstakeDelay, url);
     })
     //first Stake
     try {
@@ -136,15 +142,15 @@ class RelayHubClass {
         console.error
     }
 
-    // try {
-    //     console.log("register");
-    //     const tx = await instanceWithSigner.register_relay(fee, "localhost:3000", "");
-    //     console.log(tx);
-    //     await tx.wait();
-    //     console.log("Register Mined", tx);
-    // } catch (error) {
-    //     console.log(error)
-    // }
+    try {
+        console.log("register");
+        const tx = await instanceWithSigner.register_relay(fee, "http://localhost:3000", "0x0000000000000000000000000000000000000000");
+        console.log(tx);
+        await tx.wait();
+        console.log("Register Mined", tx);
+    } catch (error) {
+        console.log(error)
+    }
     //let balance = await instance.balanceOf(this.state.accounts[0]);
     //console.log(`Balance of ${balance.toString()}`);
   }
