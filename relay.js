@@ -3,36 +3,43 @@ const app = express();
 const ethers = require("ethers");
 const provider = new ethers.providers.JsonRpcProvider();
 
-
 //1: Deploy Contracts:
 //start Ganache
 //Relay Hub
 //userContract
 //--currently handled with truffle
 
+//turn into class later
+const loadNetwork = async () => {
+  let contract;
+  const { networks, abi } = require("./build/contracts/RelayHub.json");
+  const networkId = await provider.getNetwork();
+  const accounts = await provider.listAccounts();
+  let balance = await provider.getBalance(accounts[0]);
+  balance = balance.toString();
+  const chain = networkId.chainId;
+  //   console.log(`Ethereum Chain ID: ${chain.toString()}`);
+  //   console.log(`Balance Account[0]: ${balance}`);
+  return (contract = new ethers.Contract(
+    networks[chain].address,
+    abi,
+    provider
+  ));
+};
+
+
 //2: Fund and initialize hub and contract
 //Fund Relay for userContract
 //init userContract for relay
 
 
-//turn into class later
-const loadNetwork = async () => {
-    const { networks, abi } = require("./build/contracts/RelayHub.json");
-    const networkId = await provider.getNetwork();
-    const accounts = await provider.listAccounts();
-    let balance = await provider.getBalance(accounts[0]);
-    balance = balance.toString();
-    const chain = networkId.chainId
-    console.log(`Ethereum Chain ID: ${chain.toString()}`);
-    console.log(`Balance Account[0]: ${balance}`);
-    let contract = new ethers.Contract(networks[chain].address, abi, provider);
-    let msg = await contract.hello();
-    console.log(msg);
-}
+const fundRelay = async contract => {
+  // const contractAddress;
+  const accounts = await provider.listAccounts();
+  let balance = await contract.balanceOf(accounts[0]);
+  console.log(`Balance of ${balance.toString()}`);
 
-
-
-
+};
 
 
 //3: Submit transactions for User
@@ -53,12 +60,13 @@ app.get("/accounts", (req, res) => {
   provider.listAccounts().then(result => res.send(result));
 });
 
-app.get("/networks", (req, res) => {
+app.get("/networks", async (req, res) => {
   res.send(networks);
 });
 
-app.listen(3000, () => {
-    console.log("loading network");
-loadNetwork();
-    console.log("Gator app listening on port 3000!")
+app.listen(3000, async () => {
+  console.log("loading network");
+  let contract = await loadNetwork();
+  fundRelay(contract);
+  console.log("app listening on port 3000!");
 });
