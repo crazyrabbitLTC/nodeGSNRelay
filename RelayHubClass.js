@@ -71,27 +71,27 @@ class RelayHubClass {
     });
     instanceWithSigner.on(
       "RelayAdded",
-      (sender, owner, fee, stake, unstakeDelay, url) => {
+      (sender, owner, fee, stake, unstake_Delay, url) => {
         const relayAdded = {
           sender,
           owner,
           fee,
           stake,
-          unstakeDelay,
+          unstake_Delay,
           url
         };
         console.log("Relay Registered");
         fee = utils.formatEther(fee, { commify: true });
         stake = utils.formatEther(stake, { commify: true });
-        unstakeDelay = utils.formatEther(unstakeDelay);
+        unstake_Delay = utils.formatEther(unstake_Delay);
         console.log(
-          `Relay Added: Sender: ${sender} Owner: ${owner} Fee: ${fee} Stake: ${stake} Delay: ${unstakeDelay} URL: ${url} `
+          `Relay Added: Sender: ${sender} Owner: ${owner} Fee: ${fee} Stake: ${stake} Delay: ${unstake_Delay} URL: ${url} `
         );
         this.state = { ...this.state, relayAdded, relayReady: true };
       }
     );
 
-    this._stakeRelay_tx(stakeWei);
+    this._stake_tx(stakeWei);
   }
 
   get isRelayReady() {
@@ -200,6 +200,7 @@ class RelayHubClass {
       }
   }
 
+  //+
   async _ownerOf(address_relay) {
       const {instance} = this.state;
      try {
@@ -212,12 +213,12 @@ class RelayHubClass {
   }
 
   //+
-  async _stakeRelay_tx(stakeInWei) {
+  async _stake_tx(stake_in_Wei, unstake_Delay = 5) {
     //first Stake
     const { instanceWithSigner } = this.state;
     try {
-      const tx = await instanceWithSigner.stake(this._pubKey, 5, {
-        value: stakeInWei
+      const tx = await instanceWithSigner.stake(this._pubKey, unstake_Delay, {
+        value: stake_in_Wei
       });
       await tx.wait();
     } catch (error) {
