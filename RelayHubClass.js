@@ -254,6 +254,7 @@ class RelayHubClass {
     }
   }
 
+  //+
   async _removeStaleRelay_tx(address_relay) {
       const{instanceWithSigner} = this.state;
       try {
