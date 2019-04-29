@@ -254,7 +254,17 @@ class RelayHubClass {
     }
   }
 
-  async _removeStaleRelay_tx(address_relay) {}
+  async _removeStaleRelay_tx(address_relay) {
+      const{instanceWithSigner} = this.state;
+      try {
+          const tx = await instanceWithSigner.remove_stale_relay(address_relay);
+          await tx.wait();
+          console.log("Assume something happened with removestale relay");
+      } catch (err) {
+          console.log(err)
+          
+      }
+  }
 
   async _removeRelayByOwner_tx(address_relay) {}
 
@@ -283,6 +293,9 @@ class RelayHubClass {
 
   async _penalizeRepeatedNonce_tx(bytes_unsigned_tx1, bytes_sig1 ,bytes_unsigned_tx2, bytes_sig2){}
 
+  async _setUpKeyAlive(){
+      //Some sort of interval thing to poll
+  }
 
 }
 exports.RelayHubClass = RelayHubClass;
