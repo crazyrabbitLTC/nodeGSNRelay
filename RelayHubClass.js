@@ -100,120 +100,123 @@ class RelayHubClass {
 
   //+
   async _get_nonce_tx(address_from) {
-      const {instance} = this.state;
+    const { instance } = this.state;
 
-      //I don't need to sign so I am only taking the instance
-      try {
-          const result = await instance.get_nonce(address_RelayRecipient);
-          return result;
-      } catch (error) {
-          console.log(error)
-      }
+    //I don't need to sign so I am only taking the instance
+    try {
+      const result = await instance.get_nonce(address_RelayRecipient);
+      return result;
+    } catch (error) {
+      console.log(error);
+    }
   }
 
-//+
+  //+
   async _depositFor_tx(address_target, value_in_wei) {
-      const {instanceWithSigner} = this.state;
-      const { utils } = ethers;
-      try {
-          const tx = await instanceWithSigner.depositFor(address_target, {value: value_in_wei });
-          await tx.wait();
+    const { instanceWithSigner } = this.state;
+    const { utils } = ethers;
+    try {
+      const tx = await instanceWithSigner.depositFor(address_target, {
+        value: value_in_wei
+      });
+      await tx.wait();
 
-          console.log(tx);
-          instanceWithSigner.on("Deposited", (address_target, value) => {
-            value = utils.formatEther(value, { commify: true });
-              console.log(`Deposit of ${value} Ether for ${address_target} has been emitted`);
-          })
-
-      } catch (error) {
-          console.log(error)
-          
-      }
+      console.log(tx);
+      instanceWithSigner.on("Deposited", (address_target, value) => {
+        value = utils.formatEther(value, { commify: true });
+        console.log(
+          `Deposit of ${value} Ether for ${address_target} has been emitted`
+        );
+      });
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   //+
   async _deposit_tx(value_in_wei) {
-      const {instanceWithSigner} = this.state;
-      const { utils } = ethers;
-      try {
-          const tx = await instanceWithSigner.deposit({value: value_in_wei});
-          await tx.wait();
-          console.log(tx);
-          value_in_wei = utils.formatEther(value_in_wei, {commify: true});
-          console.log(`Deposit of ${value_in_wei} has been made.`);
-      } catch (error) {
-          
-      }
+    const { instanceWithSigner } = this.state;
+    const { utils } = ethers;
+    try {
+      const tx = await instanceWithSigner.deposit({ value: value_in_wei });
+      await tx.wait();
+      console.log(tx);
+      value_in_wei = utils.formatEther(value_in_wei, { commify: true });
+      console.log(`Deposit of ${value_in_wei} has been made.`);
+    } catch (error) {}
   }
 
-//+
+  //+
   async _withdraw_tx(amount_in_wei) {
-      const {instanceWithSigner, accounts}= this.state;
-      const {utils} = ethers;
-      const provider = this.provider;
+    const { instanceWithSigner, accounts } = this.state;
+    const { utils } = ethers;
+    const provider = this.provider;
 
-      
-      let balanceBefore = await provider.getBalance(accounts[0]);
-      balanceBefore = utils.formatEther(balanceBefore, { commify: true });
+    let balanceBefore = await provider.getBalance(accounts[0]);
+    balanceBefore = utils.formatEther(balanceBefore, { commify: true });
 
-      //Check my local balance of my address
-      try {
-          const tx = await instanceWithSigner.withdraw(amount_in_wei)
-          await tx.wait();
-          instanceWithSigner.on("Withdrawn", (address, value) => {
-            value = utils.formatEther(value, { commify: true });
-            console.log(`Withdrawl of ${value} Ether has been emitted`);
-          } )
-        //check to see if the balance has increased.
+    //Check my local balance of my address
+    try {
+      const tx = await instanceWithSigner.withdraw(amount_in_wei);
+      await tx.wait();
+      instanceWithSigner.on("Withdrawn", (address, value) => {
+        value = utils.formatEther(value, { commify: true });
+        console.log(`Withdrawl of ${value} Ether has been emitted`);
+      });
+      //check to see if the balance has increased.
 
-        let balanceAfter = await provider.getBalance(accounts[0]);
-        balanceAfter = utils.formatEther(balanceAfter, { commify: true });
+      let balanceAfter = await provider.getBalance(accounts[0]);
+      balanceAfter = utils.formatEther(balanceAfter, { commify: true });
 
-        console.log(`The Balance before withdrawl of accounts[0] was ${balanceBefore} Eth and now the balance is: ${balanceAfter} Eth.`);
-        console.log(`If the balance has not increased there is a problem.`)
-      } catch (error) {
-          
-      }
+      console.log(
+        `The Balance before withdrawl of accounts[0] was ${balanceBefore} Eth and now the balance is: ${balanceAfter} Eth.`
+      );
+      console.log(`If the balance has not increased there is a problem.`);
+    } catch (error) {}
   }
 
   //+
   async _balanceOf_tx(address_target) {
-      const {instance} = this.state;
-      try {
-          const tx = await instance.balanceOf(address_target);
-          console.log(`The balance of ${address_target} is ${tx}`)
-          return tx;
-      } catch (error) {
-          console.log(error)
-      }
+    const { instance } = this.state;
+    try {
+      const tx = await instance.balanceOf(address_target);
+      console.log(`The balance of ${address_target} is ${tx}`);
+      return tx;
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   //+
   async _stakeOf_tx(address_relay) {
-      const {instance} = this.state;
-      try {
-          const tx = await instance.stakeOf(address_relay);
-          console.log(`The State of ${address_relay} is ${tx}`)
-          return tx;
-      } catch (error) {
-          console.log(error);
-      }
+    const { instance } = this.state;
+    try {
+      const tx = await instance.stakeOf(address_relay);
+      console.log(`The State of ${address_relay} is ${tx}`);
+      return tx;
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   //+
   async _ownerOf(address_relay) {
-      const {instance} = this.state;
-     try {
-         const tx = await instance.ownerOf(address_relay);
-         console.log(`Owner of relay ${address_relay} is ${tx}`);
-         return tx;
-     } catch (error) {
-         console.log(error)
-     }
+    const { instance } = this.state;
+    try {
+      const tx = await instance.ownerOf(address_relay);
+      console.log(`Owner of relay ${address_relay} is ${tx}`);
+      return tx;
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   //+
-  async _stake_tx(stake_in_Wei, relay_address = this._pubKey, unstake_Delay = 5) {
+  async _stake_tx(
+    stake_in_Wei,
+    relay_address = this._pubKey,
+    unstake_Delay = 5
+  ) {
     //first Stake
     const { instanceWithSigner } = this.state;
     try {
@@ -229,17 +232,21 @@ class RelayHubClass {
   //+
   //might want to check that the unstake happened?
   async _canUnstake_tx(address_relay) {
-      const {instanceWithSigner} = this.state;
-      try {
-          const tx = await instanceWithSigner.can_unstake(address_relay);
-          return tx;
-      } catch (error) {
-          console.log(error)
-      }
+    const { instanceWithSigner } = this.state;
+    try {
+      const tx = await instanceWithSigner.can_unstake(address_relay);
+      return tx;
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   //+
-  async _registerRelay_tx(fee, url = this.localhost, relay_removal = this.zeroAddress) {
+  async _registerRelay_tx(
+    fee,
+    url = this.localhost,
+    relay_removal = this.zeroAddress
+  ) {
     const { instanceWithSigner } = this.state;
     try {
       console.log("register");
@@ -256,18 +263,33 @@ class RelayHubClass {
 
   //+
   async _removeStaleRelay_tx(address_relay) {
-      const{instanceWithSigner} = this.state;
-      try {
-          const tx = await instanceWithSigner.remove_stale_relay(address_relay);
-          await tx.wait();
-          console.log("Assume something happened with removestale relay");
-      } catch (err) {
-          console.log(err)
-          
-      }
+    const { instanceWithSigner } = this.state;
+    try {
+      const tx = await instanceWithSigner.remove_stale_relay(address_relay);
+      await tx.wait();
+      console.log("Assume something happened with removestale relay");
+    } catch (err) {
+      console.log(err);
+    }
   }
 
-  async _removeRelayByOwner_tx(address_relay) {}
+  async _removeRelayByOwner_tx(address_relay) {
+    const { instanceWithSigner } = this.state;
+    try {
+      const tx = await instanceWithSigner.remove_relay_by_owner(address_relay);
+
+      console.log(tx);
+      instanceWithSigner.on("RelayRemoved", (relay, unstake_Delay) => {
+        console.log(
+          `Relay: ${relay} has been removed with ${unstake_Delay} delay.`
+        );
+      });
+      await tx.wait();
+      //What else happens here?
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   async _canRelay_tx(
     address_relay,
@@ -292,11 +314,15 @@ class RelayHubClass {
     bytes_sig
   ) {}
 
-  async _penalizeRepeatedNonce_tx(bytes_unsigned_tx1, bytes_sig1 ,bytes_unsigned_tx2, bytes_sig2){}
+  async _penalizeRepeatedNonce_tx(
+    bytes_unsigned_tx1,
+    bytes_sig1,
+    bytes_unsigned_tx2,
+    bytes_sig2
+  ) {}
 
-  async _setUpKeyAlive(){
-      //Some sort of interval thing to poll
+  async _setUpKeyAlive() {
+    //Some sort of interval thing to poll
   }
-
 }
 exports.RelayHubClass = RelayHubClass;
