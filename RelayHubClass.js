@@ -179,10 +179,9 @@ class RelayHubClass {
   //+
   async _balanceOf_tx(address_target) {
       const {instance} = this.state;
-      const {utils} = ethers;
       try {
           const tx = await instance.balanceOf(address_target);
-          console.log(`The balance of ${address_target} is ${tx.utils.formatEther(tx, {commify: true})}`)
+          console.log(`The balance of ${address_target} is ${tx}`)
           return tx;
       } catch (error) {
           console.log(error)
@@ -192,17 +191,19 @@ class RelayHubClass {
   //+
   async _stakeOf_tx(address_relay) {
       const {instance} = this.state;
-      const {utils} = ethers;
       try {
           const tx = await instance.stakeOf(address_relay);
-          console.log(`The State of ${address_relay} is ${tx.utils.formatEther(tx, {commify: true})}`)
+          console.log(`The State of ${address_relay} is ${tx}`)
           return tx;
       } catch (error) {
           console.log(error);
       }
   }
 
-  async _ownerOf(address_relay) {}
+  async _ownerOf(address_relay) {
+      const {instance} = this.state;
+      const {utils }
+  }
 
   //+
   async _stakeRelay_tx(stakeInWei) {
