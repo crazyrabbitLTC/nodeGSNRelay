@@ -146,7 +146,7 @@ class RelayHubClass {
       }
   }
 
-  //Maybe I should check if the balance has actually increased. 
+//+
   async _withdraw_tx(amount_in_wei) {
       const {instanceWithSigner, accounts}= this.state;
       const {utils} = ethers;
@@ -176,7 +176,18 @@ class RelayHubClass {
       }
   }
 
-  async _balanceOf_tx(address_target) {}
+  //+
+  async _balanceOf_tx(address_target) {
+      const {instance} = this.state;
+      const {utils} = ethers;
+      try {
+          const tx = await instance.balanceOf(address_target);
+          console.log(`The balance of ${address_target} is ${tx.utils.formatEther(tx, {commify: true})}`)
+          return tx;
+      } catch (error) {
+          console.log(error)
+      }
+  }
 
   async _stakeOf_tx(address_relay) {}
 
