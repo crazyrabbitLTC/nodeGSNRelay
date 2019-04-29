@@ -202,7 +202,13 @@ class RelayHubClass {
 
   async _ownerOf(address_relay) {
       const {instance} = this.state;
-      const {utils }
+     try {
+         const tx = await instance.ownerOf(address_relay);
+         console.log(`Owner of relay ${address_relay} is ${tx}`);
+         return tx;
+     } catch (error) {
+         console.log(error)
+     }
   }
 
   //+
