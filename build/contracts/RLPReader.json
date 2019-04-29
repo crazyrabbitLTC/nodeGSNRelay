@@ -16977,10 +16977,16 @@
       "links": {},
       "address": "0xCfEB869F69431e42cdB54A4F4f105C19C080A601",
       "transactionHash": "0x707a0fc25f893340ad1844e2a32261b1e4ab2b84b9c398734d6cf2098fab3f70"
+    },
+    "1556537586424": {
+      "events": {},
+      "links": {},
+      "address": "0xCfEB869F69431e42cdB54A4F4f105C19C080A601",
+      "transactionHash": "0x707a0fc25f893340ad1844e2a32261b1e4ab2b84b9c398734d6cf2098fab3f70"
     }
   },
   "schemaVersion": "3.0.6",
-  "updatedAt": "2019-04-28T23:34:26.453Z",
+  "updatedAt": "2019-04-29T11:33:30.797Z",
   "devdoc": {
     "methods": {}
   },

@@ -4,7 +4,9 @@ A node based implementation of Gas Stations Network relay server
 
 To run: 
 
-start Ganache
+start Ganache-cli
+
+ganache-cli --deterministic
 
 delete built folder (truffle gets hung up sometimes) 
 
@@ -15,6 +17,12 @@ delete built folder (truffle gets hung up sometimes)
 To do: 
 
 Implement all Relayhub functions inside RelayHub Class
+
+Getters + Setters
+
+Add Chalk
+
+Add Spinner
 
 Implement actual relaying of transaction
 
