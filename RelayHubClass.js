@@ -238,17 +238,15 @@ class RelayHubClass {
       }
   }
 
-  async _unstakeAllowed_tx(address_relay) {}
-
   //+
-  async _registerRelay_tx(fee) {
+  async _registerRelay_tx(fee, url = this.localhost, relay_removal = this.zeroAddress) {
     const { instanceWithSigner } = this.state;
     try {
       console.log("register");
       const tx = await instanceWithSigner.register_relay(
         fee,
-        this.localhost,
-        this.zeroAddress
+        url,
+        relay_removal
       );
       await tx.wait();
     } catch (error) {
