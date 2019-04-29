@@ -189,7 +189,18 @@ class RelayHubClass {
       }
   }
 
-  async _stakeOf_tx(address_relay) {}
+  //+
+  async _stakeOf_tx(address_relay) {
+      const {instance} = this.state;
+      const {utils} = ethers;
+      try {
+          const tx = await instance.stakeOf(address_relay);
+          console.log(`The State of ${address_relay} is ${tx.utils.formatEther(tx, {commify: true})}`)
+          return tx;
+      } catch (error) {
+          console.log(error);
+      }
+  }
 
   async _ownerOf(address_relay) {}
 
