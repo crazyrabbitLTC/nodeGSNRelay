@@ -67,7 +67,7 @@ class RelayHubClass {
       value = utils.formatEther(value, { commify: true });
       console.log(`Relay Staked: ${relay}, and stake: ${value} Ether.`);
       this.state = { ...this.state, relayStaked };
-      this.registerRelay_tx(fee);
+      this._registerRelay_tx(fee);
     });
     instanceWithSigner.on(
       "RelayAdded",
@@ -91,27 +91,99 @@ class RelayHubClass {
       }
     );
 
-    this.stakeRelay_tx(stakeWei);
+    this._stakeRelay_tx(stakeWei);
   }
+
   get isRelayReady() {
     return this.state.relayReady;
   }
 
-  async get_nonce_tx(address_from) {}
+  //+
+  async _get_nonce_tx(address_from) {
+      const {instance} = this.state;
 
-  async depositFor_tx(address_target) {}
+      //I don't need to sign so I am only taking the instance
+      try {
+          const result = await instance.get_nonce(address_RelayRecipient);
+          return result;
+      } catch (error) {
+          console.log(error)
+      }
+  }
 
-  async deposit_tx() {}
+//+
+  async _depositFor_tx(address_target, value_in_wei) {
+      const {instanceWithSigner} = this.state;
+      const { utils } = ethers;
+      try {
+          const tx = await instanceWithSigner.depositFor(address_target, {value: value_in_wei });
+          await tx.wait();
 
-  async withdraw_tx(amount) {}
+          console.log(tx);
+          instanceWithSigner.on("Deposited", (address_target, value) => {
+            value = utils.formatEther(value, { commify: true });
+              console.log(`Deposit of ${value} Ether for ${address_target} has been emitted`);
+          })
 
-  async balanceOf_tx(address_target) {}
+      } catch (error) {
+          console.log(error)
+          
+      }
+  }
 
-  async stakeOf_tx(address_relay) {}
+  //+
+  async _deposit_tx(value_in_wei) {
+      const {instanceWithSigner} = this.state;
+      const { utils } = ethers;
+      try {
+          const tx = await instanceWithSigner.deposit({value: value_in_wei});
+          await tx.wait();
+          console.log(tx);
+          value_in_wei = utils.formatEther(value_in_wei, {commify: true});
+          console.log(`Deposit of ${value_in_wei} has been made.`);
+      } catch (error) {
+          
+      }
+  }
 
-  async ownerOf(address_relay) {}
+  //Maybe I should check if the balance has actually increased. 
+  async _withdraw_tx(amount_in_wei) {
+      const {instanceWithSigner, accounts}= this.state;
+      const {utils} = ethers;
+      const provider = this.provider;
 
-  async stakeRelay_tx(stakeInWei) {
+      
+      let balanceBefore = await provider.getBalance(accounts[0]);
+      balanceBefore = utils.formatEther(balanceBefore, { commify: true });
+
+      //Check my local balance of my address
+      try {
+          const tx = await instanceWithSigner.withdraw(amount_in_wei)
+          await tx.wait();
+          instanceWithSigner.on("Withdrawn", (address, value) => {
+            value = utils.formatEther(value, { commify: true });
+            console.log(`Withdrawl of ${value} Ether has been emitted`);
+          } )
+        //check to see if the balance has increased.
+
+        let balanceAfter = await provider.getBalance(accounts[0]);
+        balanceAfter = utils.formatEther(balanceAfter, { commify: true });
+
+        console.log(`The Balance before withdrawl of accounts[0] was ${balanceBefore} Eth and now the balance is: ${balanceAfter} Eth.`);
+        console.log(`If the balance has not increased there is a problem.`)
+      } catch (error) {
+          
+      }
+  }
+
+  async _balanceOf_tx(address_target) {}
+
+  async _stakeOf_tx(address_relay) {}
+
+  async _ownerOf(address_relay) {}
+
+  //+
+  async _stakeRelay_tx(stakeInWei) {
     //first Stake
     const { instanceWithSigner } = this.state;
     try {
@@ -124,11 +196,12 @@ class RelayHubClass {
     }
   }
 
-  async canUnstake_tx(address_relay) {}
+  async _canUnstake_tx(address_relay) {}
 
-  async unstakeAllowed_tx(address_relay) {}
+  async _unstakeAllowed_tx(address_relay) {}
 
-  async registerRelay_tx(fee) {
+  //+
+  async _registerRelay_tx(fee) {
     const { instanceWithSigner } = this.state;
     try {
       console.log("register");
@@ -143,11 +216,11 @@ class RelayHubClass {
     }
   }
 
-  async removeStaleRelay_tx(address_relay) {}
+  async _removeStaleRelay_tx(address_relay) {}
 
-  async removeRelayByOwner_tx(address_relay) {}
+  async _removeRelayByOwner_tx(address_relay) {}
 
-  async canRelay_tx(
+  async _canRelay_tx(
     address_relay,
     address_from,
     address_RelayRecipient,
@@ -159,7 +232,7 @@ class RelayHubClass {
     bytes_sig
   ) {}
 
-  async relay_tx(
+  async _relay_tx(
     address_from,
     address_to,
     bytes_encoded_function,
@@ -170,8 +243,8 @@ class RelayHubClass {
     bytes_sig
   ) {}
 
-  async penalizeRepeatedNonce_tx(bytes_unsigned_tx1, bytes_sig1 ,bytes_unsigned_tx2, bytes_sig2){}
+  async _penalizeRepeatedNonce_tx(bytes_unsigned_tx1, bytes_sig1 ,bytes_unsigned_tx2, bytes_sig2){}
 
-  
+
 }
 exports.RelayHubClass = RelayHubClass;
