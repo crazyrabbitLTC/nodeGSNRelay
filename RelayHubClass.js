@@ -213,11 +213,11 @@ class RelayHubClass {
   }
 
   //+
-  async _stake_tx(stake_in_Wei, unstake_Delay = 5) {
+  async _stake_tx(stake_in_Wei, relay_address = this._pubKey, unstake_Delay = 5) {
     //first Stake
     const { instanceWithSigner } = this.state;
     try {
-      const tx = await instanceWithSigner.stake(this._pubKey, unstake_Delay, {
+      const tx = await instanceWithSigner.stake(relay_address, unstake_Delay, {
         value: stake_in_Wei
       });
       await tx.wait();
@@ -226,7 +226,14 @@ class RelayHubClass {
     }
   }
 
-  async _canUnstake_tx(address_relay) {}
+  async _canUnstake_tx(address_relay) {
+      const {instanceWithSigner} = this.state;
+      try {
+          const tx = await instanceWithSigner.can_unstake(address_relay)
+      } catch (error) {
+          
+      }
+  }
 
   async _unstakeAllowed_tx(address_relay) {}
 
