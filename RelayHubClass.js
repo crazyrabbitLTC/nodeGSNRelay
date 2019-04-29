@@ -226,12 +226,15 @@ class RelayHubClass {
     }
   }
 
+  //+
+  //might want to check that the unstake happened?
   async _canUnstake_tx(address_relay) {
       const {instanceWithSigner} = this.state;
       try {
-          const tx = await instanceWithSigner.can_unstake(address_relay)
+          const tx = await instanceWithSigner.can_unstake(address_relay);
+          return tx;
       } catch (error) {
-          
+          console.log(error)
       }
   }
 
