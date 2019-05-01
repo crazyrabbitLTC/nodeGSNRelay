@@ -1,4 +1,6 @@
 const ethers = require("ethers");
+const chalk = require("chalk");
+const log = console.log;
 
 class RelayHubClass {
   constructor(provider, contractArtifact, privKey, pubKey) {
@@ -99,12 +101,12 @@ class RelayHubClass {
   }
 
   //+
-  async _get_nonce_tx(address_from) {
+  async _get_nonce_tx(addressFrom) {
     const { instance } = this.state;
 
     //I don't need to sign so I am only taking the instance
     try {
-      const result = await instance.get_nonce(address_RelayRecipient);
+      const result = await instance.get_nonce(addressRelayRecipient);
       return result;
     } catch (error) {
       console.log(error);
@@ -188,11 +190,11 @@ class RelayHubClass {
   }
 
   //+
-  async _stakeOf_tx(address_relay) {
+  async _stakeOf_tx(addressRelay) {
     const { instance } = this.state;
     try {
-      const tx = await instance.stakeOf(address_relay);
-      console.log(`The State of ${address_relay} is ${tx}`);
+      const tx = await instance.stakeOf(addressRelay);
+      console.log(`The State of ${addressRelay} is ${tx}`);
       return tx;
     } catch (error) {
       console.log(error);
@@ -200,11 +202,11 @@ class RelayHubClass {
   }
 
   //+
-  async _ownerOf(address_relay) {
+  async _ownerOf(addressRelay) {
     const { instance } = this.state;
     try {
-      const tx = await instance.ownerOf(address_relay);
-      console.log(`Owner of relay ${address_relay} is ${tx}`);
+      const tx = await instance.ownerOf(addressRelay);
+      console.log(`Owner of relay ${addressRelay} is ${tx}`);
       return tx;
     } catch (error) {
       console.log(error);
@@ -231,10 +233,10 @@ class RelayHubClass {
 
   //+
   //might want to check that the unstake happened?
-  async _canUnstake_tx(address_relay) {
+  async _canUnstake_tx(addressRelay) {
     const { instanceWithSigner } = this.state;
     try {
-      const tx = await instanceWithSigner.can_unstake(address_relay);
+      const tx = await instanceWithSigner.can_unstake(addressRelay);
       return tx;
     } catch (error) {
       console.log(error);
@@ -262,10 +264,10 @@ class RelayHubClass {
   }
 
   //+
-  async _removeStaleRelay_tx(address_relay) {
+  async _removeStaleRelay_tx(addressRelay) {
     const { instanceWithSigner } = this.state;
     try {
-      const tx = await instanceWithSigner.remove_stale_relay(address_relay);
+      const tx = await instanceWithSigner.remove_stale_relay(addressRelay);
       await tx.wait();
       console.log("Assume something happened with removestale relay");
     } catch (err) {
@@ -273,10 +275,10 @@ class RelayHubClass {
     }
   }
 
-  async _removeRelayByOwner_tx(address_relay) {
+  async _removeRelayByOwner_tx(addressRelay) {
     const { instanceWithSigner } = this.state;
     try {
-      const tx = await instanceWithSigner.remove_relay_by_owner(address_relay);
+      const tx = await instanceWithSigner.remove_relay_by_owner(addressRelay);
 
       console.log(tx);
       instanceWithSigner.on("RelayRemoved", (relay, unstake_Delay) => {
@@ -292,24 +294,44 @@ class RelayHubClass {
   }
 
   async _canRelay_tx(
-    address_relay,
-    address_from,
-    address_RelayRecipient,
-    bytes_transaction,
-    transaction_fee,
-    gas_price,
-    gas_limit,
+    addressRelay,
+    addressFrom,
+    addressRelayRecipient,
+    bytesTransaction,
+    transactionFee,
+    gasPrice,
+    gasLimit,
     nonce,
     bytes_sig
-  ) {}
+  ) {
+    const { instanceWithSigner } = this.state;
+
+    try {
+      const can_relay = await instanceWithSigner.can_relay(
+        addressRelay,
+        addressFrom,
+        addressRelayRecipient,
+        bytesTransaction,
+        transactionFee,
+        gasPrice,
+        gasLimit,
+        nonce,
+        bytes_sig
+      );
+    } catch (error) {
+      console.log(error);
+      log(chalk.red(error));
+    }
+
+  }
 
   async _relay_tx(
-    address_from,
+    addressFrom,
     address_to,
     bytes_encoded_function,
-    transaction_fee,
-    gas_price,
-    gas_limit,
+    transactionFee,
+    gasPrice,
+    gasLimit,
     nonce,
     bytes_sig
   ) {}
@@ -324,5 +346,7 @@ class RelayHubClass {
   async _setUpKeyAlive() {
     //Some sort of interval thing to poll
   }
+
+  async _calculateGasCost() {}
 }
 exports.RelayHubClass = RelayHubClass;
