@@ -2,7 +2,7 @@ const ethers = require("ethers");
 const chalk = require("chalk");
 const log = console.log;
 
-//Note that I use Ale's code here. 
+//Note that I use Ale's code here.
 
 class RelayHubClass {
   constructor(provider, contractArtifact, privKey, pubKey) {
@@ -325,21 +325,52 @@ class RelayHubClass {
       return !can_relay;
     } catch (error) {
       log(chalk.red(error));
-      
     }
-
   }
 
+  //could use argument spread operator here?
   async _relay_tx(
-    addressFrom,
-    address_to,
-    bytes_encoded_function,
+    userAddressFrom,
+    contractAddressTo,
+    encodedCall,
     transactionFee,
     gasPrice,
     gasLimit,
     nonce,
-    bytes_sig
-  ) {}
+    userSignedMessage
+  ) {
+    const { instanceWithSigner, accounts } = this.state;
+    const args = [
+      userAddressFrom,
+      contractAddressTo,
+      encodedCall,
+      transactionFee,
+      gasPrice,
+      gasLimit,
+      nonce,
+      userSignedMessage
+    ];
+
+    const parameters = {
+      gas: 6000000,
+      gasPrice: 10,
+      from: accounts[0]
+    };
+
+    try {
+      const tx = await instanceWithSigner.relay(...args, parameters);
+      await tx.wait();
+      log(chalk.green(tx));
+      
+      const logs = tx.logs[0];
+      const args = logs.args;
+      const charge = args.charge.toNumber();
+      log(chalk.orange(`Relayed: ${args}  Charge: ${charge}`));
+      return {logs, args, charge}
+    } catch (error) {
+      log(chalk.red(error));
+    }
+  }
 
   async _penalizeRepeatedNonce_tx(
     bytes_unsigned_tx1,
