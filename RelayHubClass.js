@@ -109,7 +109,7 @@ class RelayHubClass {
       const result = await instance.get_nonce(addressRelayRecipient);
       return result;
     } catch (error) {
-      console.log(error);
+      log(chalk.red(error));
     }
   }
 
@@ -131,7 +131,7 @@ class RelayHubClass {
         );
       });
     } catch (error) {
-      console.log(error);
+      log(chalk.red(error));
     }
   }
 
@@ -185,7 +185,7 @@ class RelayHubClass {
       console.log(`The balance of ${address_target} is ${tx}`);
       return tx;
     } catch (error) {
-      console.log(error);
+      log(chalk.red(error));
     }
   }
 
@@ -197,7 +197,7 @@ class RelayHubClass {
       console.log(`The State of ${addressRelay} is ${tx}`);
       return tx;
     } catch (error) {
-      console.log(error);
+      log(chalk.red(error));
     }
   }
 
@@ -209,7 +209,7 @@ class RelayHubClass {
       console.log(`Owner of relay ${addressRelay} is ${tx}`);
       return tx;
     } catch (error) {
-      console.log(error);
+      log(chalk.red(error));
     }
   }
 
@@ -239,7 +239,7 @@ class RelayHubClass {
       const tx = await instanceWithSigner.can_unstake(addressRelay);
       return tx;
     } catch (error) {
-      console.log(error);
+      log(chalk.red(error));
     }
   }
 
@@ -259,7 +259,7 @@ class RelayHubClass {
       );
       await tx.wait();
     } catch (error) {
-      console.log(error);
+      log(chalk.red(error));
     }
   }
 
@@ -289,7 +289,7 @@ class RelayHubClass {
       await tx.wait();
       //What else happens here?
     } catch (error) {
-      console.log(error);
+      log(chalk.red(error));
     }
   }
 
@@ -319,8 +319,8 @@ class RelayHubClass {
         bytes_sig
       );
     } catch (error) {
-      console.log(error);
       log(chalk.red(error));
+      
     }
 
   }
