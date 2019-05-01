@@ -2,6 +2,8 @@ const ethers = require("ethers");
 const chalk = require("chalk");
 const log = console.log;
 
+//Note that I use Ale's code here. 
+
 class RelayHubClass {
   constructor(provider, contractArtifact, privKey, pubKey) {
     this.provider = provider;
@@ -318,6 +320,9 @@ class RelayHubClass {
         nonce,
         bytes_sig
       );
+
+      //Returns true when it can relay
+      return !can_relay;
     } catch (error) {
       log(chalk.red(error));
       
